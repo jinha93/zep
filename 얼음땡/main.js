@@ -5,18 +5,17 @@ let tomb = App.loadSpritesheet('tomb.png', 32, 48, {
     up: [0],    // defined base anim 
     down: [0],  // defined base anim 
 });
-let poop  = App.loadSpritesheet('poop.png', 48, 43, {
+let ice  = App.loadSpritesheet('ice.png', 48, 64, {
     left: [0],  // defined base anim 
     right: [0], // defined base anim 
     up: [0],    // defined base anim 
     down: [0],  // defined base anim 
 });
-let monster = App.loadSpritesheet('monster.png', 96, 96, {
-    // defined base anim
-    left: [8, 9, 10, 11],
-    up: [12, 13, 14, 15],
-    down: [4, 5, 6, 7],
-    right: [16, 17, 18, 19],
+let villain = App.loadSpritesheet('villain.png', 48, 64, {
+    left: [5, 6, 7, 8, 9],
+    up: [15, 16, 17, 18, 19],
+    down: [0, 1, 2, 3, 4],
+    right: [10, 11, 12, 13, 14],
 }, 8);
 
 const STATE_INIT = 3000;
@@ -110,11 +109,11 @@ App.onPlayerTouched.Add(function(sender, target, x, y) {
 });
 
 
-// 플레이어가 지정된 키를 눌렀을 때 실행
+// 플레이어가 지정된 키를 눌렀을 때 실행 (x키)
 App.addOnKeyDown(88, function(p){	
 	if(!p.tag.ice && !p.tag.villain){
         p.tag.ice = true; 			// 얼음 여부를 true로 변경
-		p.sprite = poop;			// 얼음 아바타로 변경
+		p.sprite = ice;				// 얼음 아바타로 변경
         p.moveSpeed = 0; 			// 이동속도를 0으로 변경
         p.sendUpdated();
     }
@@ -180,8 +179,8 @@ function startState(state){
 				
 				// 술래 속성 변경
                 if(p.tag.villain){
-                    p.title = '<P:ZERO>';
-                    p.sprite = monster;
+                    p.title = '<술래>';
+                    p.sprite = villain;
                 }
                 p.sendUpdated();
             }
