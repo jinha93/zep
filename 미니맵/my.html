@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+	
+	<body>
+		<canvas id="canvas" width="300px" height="300px" style="border:1px solid black;"></canvas>
+	</body>
+	
+	<script type="text/javascript">
+			window.addEventListener('message', function(e) {
+				// main.js에서 값을 받아서 처리
+				var tileX = e.data.tileX;
+				var tileY = e.data.tileY;
+				
+				//도화지 객체
+				var canvas = document.getElementById('canvas');
+				canvas.width = canvas.width;
+				//canvas에 그림을 그려주는 화가 객체 얻어오기
+				var context = canvas.getContext('2d');
+				
+				//좌표그림그리기
+				context.fillStyle="red";
+				context.fillRect(tileX*10,tileY*10,10,10);
+			})
+	</script>
+</html>
