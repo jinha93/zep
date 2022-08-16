@@ -6,24 +6,41 @@
 	</head>
 	
 	<body>
-		<canvas id="canvas" width="300px" height="300px" style="border:1px solid black;"></canvas>
+		<canvas id="canvas"></canvas>
 	</body>
 	
 	<script type="text/javascript">
 			window.addEventListener('message', function(e) {
 				// main.js에서 값을 받아서 처리
-				var tileX = e.data.tileX;
-				var tileY = e.data.tileY;
+				var width = e.data.width;
+				var height = e.data.height;
+				var mapImg = e.data.mapImg;
+				var tileX = e.data.tileX * 5;
+				var tileY = e.data.tileY * 5;
 				
 				//도화지 객체
 				var canvas = document.getElementById('canvas');
-				canvas.width = canvas.width;
+				canvas.width = width;
+				canvas.height = height;
 				//canvas에 그림을 그려주는 화가 객체 얻어오기
 				var context = canvas.getContext('2d');
 				
 				//좌표그림그리기
 				context.fillStyle="red";
-				context.fillRect(tileX*10,tileY*10,10,10);
+				context.fillRect(tileX,tileY,5,5);
+				if(mapImg){
+					canvas.style.backgroundImage = "url('"+mapImg+"')";
+					canvas.style.backgroundSize = "cover";
+					canvas.style.opacity = 0.5;
+				}
+				
 			})
 	</script>
+	
+	<style>
+		#canvas{
+			margin-left: 50px;
+			border: 1px solid black;
+		}
+	</style>
 </html>
